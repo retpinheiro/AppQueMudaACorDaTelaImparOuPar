@@ -1,2 +1,93 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  //Widget Lê-se uidjti
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        //primarySwatch: Colors.green,
+        //primaryColor: Colors.orange[50],
+        primaryColor: Color.fromRGBO(120, 46, 82, 1.0),
+      ),
+      home: MyHomePage(title: 'Primeiro APP'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+  int _red = 0;
+  int _blue = 255;
+  int _green = 0;
+  String _texto = 'É Par';
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+      if (_counter % 2 == 0) {
+        _red = 0;
+        _blue = 255;
+        _green = 0;
+        _texto = 'É Par';
+      } else {
+        _red = 255;
+        _blue = 0;
+        _green = 0;
+        _texto = 'É Impar';
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(_red, _green, _blue, 1.0),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Precione o botão',
+            ),
+            Text('Abaixo para contar',
+                style: TextStyle(
+                  color: Color.fromRGBO(50, 158, 348, 1),
+                )), // h1 a h6
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline1, // h1 a h6
+            ),
+            Text(
+              '$_texto',
+              style: Theme.of(context).textTheme.headline1,
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter, // método que incrementa o contador
+        tooltip:
+            'Click aqui para alterar o valor do contador', // acessibilidade (leitura de tela por voz)
+        child: Icon(Icons.adb),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
